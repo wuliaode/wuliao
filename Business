@@ -1,0 +1,205 @@
+package work;
+
+import java.util.Scanner;
+
+public class Business {
+	/**
+	 * 创建一个存放图书的库（学生【共享】一个图书库） Book[] books = new Book[5]; 创建一个图书类型的数组对象
+	 */
+	private static Book[] books = new Book[5];
+	/**
+	 * 创建一个存放学生信息的库
+	 */
+	private static Student[] students = new Student[5];
+
+	/**
+	 * 获取控制台信息--对象 sc
+	 * 
+	 * @author 无聊
+	 *
+	 */
+	private static Scanner sc = new Scanner(System.in);
+
+	// 程序入口
+	public static void main(String[] args) {
+		// 创建对象
+		Business bus = new Business();
+		// 调用成员方法
+		bus.serviceBook();
+	}
+
+	// ----基本信息管理----图书管理----学生管理----
+	/**
+	 * 添加图书信息
+	 */
+	public void saveBook(Book book) {
+		//
+		for (int i = 0; i < books.length; i++) {
+			if (books[i] == null) {
+				books[i] = book;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * 添加学生信息
+	 */
+	public void saveStudent(Student student) {
+		//
+		for (int i = 0; i < students.length; i++) {
+			if (students[i] == null) {
+				students[i] = student;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * 显示图书信息
+	 */
+	public void showBook() {
+		for (int i = 0; i < books.length; i++) {
+			Book book = books[i];
+			if (book != null)
+				System.out.println(
+						book.getBookname() + "|" + book.getAuth() +
+						"|" + book.getCardno() + "|" + 
+								book.getMessage());
+		}
+	}
+
+	/**
+	 * 
+	 * 显示学生信息
+	 */
+	public void ShowStudent() {
+		for (int i = 0; i < students.length; i++) {
+			Student s = students[i];
+			System.out.println(s.getUno() + "|" + s.getSex() + "|" +
+			s.getClassroom() + "|" + s.getUsername());
+		}
+	}
+
+	public void serviceBook() {
+		boolean flag = true;
+		System.out.println("1添加图书；2添加学生；3显示图书；4显示学生");
+		do {
+			switch (sc.nextInt()) {
+			case 1:
+				System.out.println("请输入书名");
+				String bookname = sc.next();
+				System.out.println("请输入作者");
+				String auth = sc.next();
+				System.out.println("请输入介绍");
+				String message = sc.next();
+				System.out.println("请输入编号");
+				String bookno = sc.next();
+
+				Book book = new Book();
+				book.setAuth(auth);
+				book.setBookname(bookname);
+				book.setCardno(bookno);
+				book.setMessage(message);
+				saveBook(book);
+				break;
+
+			case 2:
+
+				break;
+
+			case 3:
+
+				break;
+
+			case 4:
+
+				break;
+
+			}
+		} while (flag);
+	}
+
+	class Book {
+		private String cardno;
+		private String bookname;
+		private String auth;
+		private String message;
+
+		public String getCardno() {
+			return cardno;
+		}
+
+		public void setCardno(String cardno) {
+			// 就近原则--区分贞观变量和局部变量名称相同时使用
+			this.cardno = cardno;
+		}
+
+		public String getBookname() {
+			return bookname;
+		}
+
+		public void setBookname(String bookname) {
+			this.bookname = bookname;
+		}
+
+		public String getAuth() {
+			return auth;
+		}
+
+		public void setAuth(String auth) {
+			this.auth = auth;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+
+	}
+
+	class Student {
+		private String username;
+		private String sex;
+		private String classroom;
+		private String uno;
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getSex() {
+			return sex;
+		}
+
+		public void setSex(String sex) {
+			this.sex = sex;
+		}
+
+		public String getClassroom() {
+			return classroom;
+		}
+
+		public void setClassroom(String classroom) {
+			this.classroom = classroom;
+		}
+
+		public String getUno() {
+			return uno;
+		}
+
+		public void setUno(String uno) {
+			this.uno = uno;
+		}
+	}
+
+}
